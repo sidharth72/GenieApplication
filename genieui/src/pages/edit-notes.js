@@ -7,7 +7,7 @@ import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
-import axiosInstance from './axios';
+import axiosInstance from 'src/components/axios';
 import { useState } from 'react';
 import AlertTemplate from "react-alert-template-basic";
 import { positions, Provider } from "react-alert";
@@ -19,7 +19,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 
 
-const editNotes = () => {
+const EditNotes = () => {
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -58,7 +58,7 @@ const editNotes = () => {
       }).catch((errors)=>{
         console.log(errors)
         if(errors.response.status===500){
-          console.log("Error")
+          null
         }
       })
     }
@@ -72,8 +72,8 @@ const editNotes = () => {
     || formik.values.desc === ""
     
     ){
-    formik.values.title =  (typeof window !== "undefined") ? localStorage.getItem('notesTitle'): console.log("Authentication error")
-    formik.values.desc =  (typeof window !== "undefined") ? localStorage.getItem('notesDesc'): console.log("Authentication error")
+    formik.values.title =  (typeof window !== "undefined") ? localStorage.getItem('notesTitle'): null
+    formik.values.desc =  (typeof window !== "undefined") ? localStorage.getItem('notesDesc'): null
   }
 
   return (
@@ -142,7 +142,7 @@ const editNotes = () => {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               type="text"
-              defaultValue={(typeof window !== "undefined") ? localStorage.getItem('notesTitle') : console.log("Authentication error")}
+              defaultValue={(typeof window !== "undefined") ? localStorage.getItem('notesTitle') : null}
               variant="outlined"
             />
             <TextField
@@ -159,7 +159,7 @@ const editNotes = () => {
               onChange={formik.handleChange}
               type="text"
               rows={8}
-              defaultValue={(typeof window !== "undefined") ? localStorage.getItem('notesDesc'): console.log("Authentication error")}
+              defaultValue={(typeof window !== "undefined") ? localStorage.getItem('notesDesc'): null}
               variant="outlined"
             />
 
@@ -212,4 +212,4 @@ const editNotes = () => {
   );
 };
 
-export default editNotes;
+export default EditNotes;

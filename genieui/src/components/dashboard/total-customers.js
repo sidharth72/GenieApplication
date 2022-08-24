@@ -7,7 +7,7 @@ export const TotalCustomers = (props) => (
     <CardContent>
       <Grid
         container
-        spacing={3}
+        spacing={1}
         sx={{ justifyContent: 'space-between' }}
       >
         <Grid item>

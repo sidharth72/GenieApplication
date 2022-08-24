@@ -16,7 +16,7 @@ import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axiosInstance from "src/pages/axios";
+import axiosInstance from "src/components/axios";
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -73,7 +73,6 @@ export const AddSection = (props) => {
       response_from_ai: Yup.string().min(20).max(7200),
     }),
     onSubmit: (values) => {
-      console.log(values);
       //values['response_from_ai'] = values['response_from_ai'].replace(/<\/?[^>]+>/gi, '')
       const notesID = localStorage.getItem("notesID");
       setLoading(true);
@@ -102,25 +101,56 @@ export const AddSection = (props) => {
   return (
     <form {...props}>
       <div>
-        <Card style={{ backgroundColor: "transparent" }} variant="primary">
-          <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+        <Card 
+        style={{ backgroundColor: "transparent" }} 
+        variant="primary"
+        >
+          <Dialog disableEscapeKeyDown 
+          open={open} 
+          onClose={handleClose}
+          >
             <DialogTitle>Fill the form</DialogTitle>
             <DialogContent>
-              <Box component="form" sx={{ display: "flex", flexWrap: "wrap" }}>
-                <FormControl sx={{ m: 1, minWidth: 300 }}>
+              <Box component="form" 
+              sx={{ display: "flex", flexWrap: "wrap" }}
+              >
+                <FormControl 
+                sx={{ m: 1, minWidth: 300 }}
+                >
                   <InputLabel htmlFor="demo-dialog-native">Words</InputLabel>
                   <Select
                     native
                     value={words}
                     onChange={handleChange}
-                    input={<OutlinedInput label="Words" id="demo-dialog-native" />}
+                    input={
+                    <OutlinedInput 
+                    label="Words" 
+                    id="demo-dialog-native" 
+                    />}
                   >
-                    <option aria-label="None" value="" />
-                    <option value={50}>50</option>
-                    <option value={100}>100</option>
-                    <option value={200}>200</option>
-                    <option value={300}>300</option>
-                    <option value={500}>500</option>
+                    <option aria-label="None" 
+                    value="" 
+                    />
+                    <option 
+                    value={50}
+                    >50
+                    </option>
+                    <option 
+                    value={100}
+                    >100
+                    </option>
+                    <option 
+                    value={200}
+                    >200
+                    </option>
+                    <option 
+                    value={300}
+                    >300
+                    </option>
+                    <option
+                     value={500}
+                     >500
+                     </option>
                   </Select>
                 </FormControl>
               </Box>
@@ -131,8 +161,12 @@ export const AddSection = (props) => {
             </DialogActions>
           </Dialog>
 
-          <Grid container justifyContent="flex-end">
-            <Box sx={{ m: 1 }}>
+          <Grid container 
+          justifyContent="flex-end"
+          >
+            <Box 
+            sx={{ m: 1 }}
+            >
               <Tooltip title="translate to other languages">
                 <Button
                   color="primary"

@@ -1,5 +1,3 @@
-from cgitb import lookup
-from tkinter.tix import Tree
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response

@@ -86,21 +86,30 @@ export default function PermanentDrawerRight() {
       <CssBaseline />
       <DashboardNavbar />
       <div style={style}>
-        <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}>
+        <Box component="main" 
+        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+        >
           <Toolbar />
 
-          <Typography color="textPrimary" variant="h4">
+          <Typography 
+          color="textPrimary" 
+          variant="h4"
+          >
             {typeof window !== "undefined"
               ? localStorage.getItem("notesTitle")
-              : console.log("Authentication error")}
+              : null}
           </Typography>
 
           <br />
 
-          <Typography color="textSecondary" gutterBottom variant="body2">
+          <Typography 
+          color="textSecondary" 
+          gutterBottom 
+          variant="body2"
+          >
             {typeof window !== "undefined"
               ? localStorage.getItem("notesDesc")
-              : console.log("Authentication error")}
+              : null}
           </Typography>
 
           <Button

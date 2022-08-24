@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState, useEffect } from 'react';
-import axiosInstance from 'axios';
+import axiosInstance from 'src/components/axios';
 
 
 const Register = () => {
@@ -58,7 +58,7 @@ const Register = () => {
     onSubmit: values => {
 
       axiosInstance.post(
-        'http://localhost:8000/auth/register', values
+        'auth/register', values
       ).then((response)=>{
         if(response.statusText=="Created"){
           router.push('/login')
@@ -138,7 +138,10 @@ const Register = () => {
               variant="outlined"
             
             />
-            <div style={{color:"#D14343",fontSize:"12px", marginLeft:"20px"}} className='input-feedback'>{usernameError}</div>
+            <div style={{color:"#D14343",fontSize:"12px", marginLeft:"20px"}} 
+            className='input-feedback'
+            >
+              {usernameError}</div>
             {/*<TextField
               error={Boolean(formik.touched.lastName && formik.errors.lastName)}
               fullWidth
@@ -164,7 +167,11 @@ const Register = () => {
               value={formik.values.email}
               variant="outlined"
       />
-       <div style={{color:"#D14343",fontSize:"12px", marginLeft:"20px"}} className='input-feedback'>{emailError}</div>
+       <div style={{color:"#D14343",fontSize:"12px", marginLeft:"20px"}} 
+        className='input-feedback'
+       >
+        {emailError}
+        </div>
             <TextField
               error={Boolean(formik.touched.password && formik.errors.password)}
               fullWidth

@@ -7,7 +7,7 @@ import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
-import axiosInstance from 'axios'
+import axiosInstance from 'src/components/axios';
 import { useState } from 'react';
 import AlertTemplate from "react-alert-template-basic";
 import { positions, Provider } from "react-alert";
@@ -48,7 +48,7 @@ const Login = () => {
           'Password is required')
     }),
     onSubmit: values => {
-      axiosInstance.post('http://localhost:8000/auth/login/', values
+      axiosInstance.post('auth/login/', values
       
       ).then((response)=>{
         if(response.data){

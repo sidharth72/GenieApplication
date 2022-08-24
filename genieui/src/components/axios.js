@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8000/";
+const baseURL = process.env.RESTURL_SPEAKERS;
 
 var get_data = "";
 
 if (typeof window !== "undefined") {
   get_data = localStorage.getItem("access_token");
 } else {
-  console.log("You are requesting to the server");
+  null
 }
 
 const axiosInstance = axios.create({
@@ -29,11 +29,6 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
 
     if (typeof error.response === "undefined") {
-      alert(
-        "A server/network error occurred. " +
-          "Looks like CORS might be the problem. " +
-          "Sorry about this - we will get it fixed shortly."
-      );
       return Promise.reject(error);
     }
 
@@ -43,7 +38,7 @@ axiosInstance.interceptors.response.use(
     }
 
     if (
-      (error.response.data.code === "token_not_valid" &&
+      (//error.response.data.code === "token_not_valid" &&
         error.response.status === 401 &&
         error.response.statusText === "Unauthorized") ||
       (error.response.status === 403 && error.response.statusText === "Forbidden")
@@ -55,7 +50,7 @@ axiosInstance.interceptors.response.use(
 
         // exp date in token is expressed in seconds, while now() returns milliseconds:
         const now = Math.ceil(Date.now() / 1000);
-        console.log(tokenParts.exp);
+        //console.log(tokenParts.exp);
 
         if (tokenParts.exp > now) {
           return axiosInstance
@@ -73,11 +68,11 @@ axiosInstance.interceptors.response.use(
               console.log(err);
             });
         } else {
-          console.log("Refresh token is expired", tokenParts.exp, now);
+          //console.log("Refresh token is expired", tokenParts.exp, now);
           window.location.href = "/login/";
         }
       } else {
-        console.log("Refresh token not available.");
+       // console.log("Refresh token not available.");
         window.location.href = "/login/";
       }
     }

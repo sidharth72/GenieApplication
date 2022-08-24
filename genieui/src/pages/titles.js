@@ -23,7 +23,7 @@ import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import { NavItem } from 'src/components/nav-item';
-import axiosInstance from './axios';
+import axiosInstance from 'src/components/axios';
 import { useRouter } from 'next/router'
 import AddSection from 'src/components/editor';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -105,17 +105,31 @@ const Titles = () => {
                             localStorage.setItem('notesTitle', value['title']);
                             localStorage.setItem('notesDesc', value['desc']);
                             localStorage.setItem('contentID', value['id']);
-                            router.push('/notes')}} variant="text" style={{color:"#121212"}} size="large"
-                          startIcon={(<AssignmentOutlinedIcon color="primary" size="large" />)}
+                            router.push('/notes')}} 
+                            variant="text" 
+                            style={{color:"#121212"}} 
+                            size="large"
+                            startIcon={(<AssignmentOutlinedIcon color="primary" 
+                            size="large" />)}
                           >
 
                             {value['title']}
                           </Button>
 
 
-                            <Tooltip style={{marginLeft:"auto"}}  title={`Delete ${value['title']}`}>
-                            <IconButton onClick={()=>{setSelectedID(value['data'].id);setSelectedTitle(value['title']);setShowModal(true); }} spacing={200} aria-label="delete">
-                              <DeleteOutlineIcon size="small" style={{color:"#6B7280"}}/>
+                            <Tooltip style={{marginLeft:"auto"}}  
+                            
+                            title={`Delete ${value['title']}`}
+                            
+                            >
+                            <IconButton onClick={()=>{setSelectedID(value['data'].id);setSelectedTitle(value['title']);setShowModal(true); }} 
+                            spacing={200} 
+                            aria-label="delete"
+                            >
+                              <DeleteOutlineIcon 
+                              size="small" 
+                              style={{color:"#6B7280"}}
+                              />
                             </IconButton>
                             </Tooltip>
                         
@@ -151,14 +165,18 @@ const Titles = () => {
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText>
-                    Are you sure want to delete the topic "{selectedTitle}" ?
+                    Are you sure want to delete the topic {'"'+selectedTitle+'"'} ?
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button autoFocus onClick={()=>{handleCancel(); setReloading(true)}}>
+                  <Button 
+                      onClick={()=>{
+                        handleCancel(); setReloading(true)
+                        }
+                        }>
                     Cancel
                   </Button>
-                  <Button onClick={()=>{axiosInstance.delete(`notesapi/update/${selectedID}/`); setReloading(true); handleClose()}} autoFocus>
+                  <Button onClick={()=>{axiosInstance.delete(`notesapi/update/${selectedID}/`); setReloading(true); handleClose()}}>
                     Ok
                   </Button>
                 </DialogActions>

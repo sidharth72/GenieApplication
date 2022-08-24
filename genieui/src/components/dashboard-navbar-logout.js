@@ -14,7 +14,7 @@ import FaceIcon from "@mui/icons-material/Face";
 import React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import axiosInstance from "src/pages/axios";
+import axiosInstance from "src/components/axios";
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -47,7 +47,9 @@ export const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   return (
     <>
-      <DashboardNavbarRoot sx={{ height: 0, left: { lg: 1 }, width: { lg: "100%" } }} {...other}>
+      <DashboardNavbarRoot sx={{ height: 0, marginTop: 1.80, left: { lg: 1 }, width: { lg: "100%" } }} 
+      {...other}
+      >
         <Toolbar
           disableGutters
           sx={{
@@ -68,7 +70,9 @@ export const DashboardNavbar = (props) => {
             <MenuIcon fontSize="small" />
           </IconButton>
           <Tooltip title="Back">
-            <IconButton onClick={() => router.back()} sx={{ ml: 3 }}>
+            <IconButton onClick={() => router.back()} 
+            sx={{ ml: 3 }}
+            >
               <ArrowBackIcon fontSize="medium" />
             </IconButton>
           </Tooltip>
@@ -77,14 +81,21 @@ export const DashboardNavbar = (props) => {
 
           <Tooltip title="Notifications">
             <IconButton sx={{ ml: 3 }}>
-              <Badge badgeContent={4} color="primary" variant="dot">
-                <BellIcon fontSize="small" />
+              <Badge 
+              badgeContent={4} 
+              color="primary" 
+              variant="dot"
+              >
+                <BellIcon fontSize="medium" />
               </Badge>
             </IconButton>
           </Tooltip>
 
           <Tooltip title="ME">
-            <IconButton onClick={handleClick} sx={{ ml: 2 }}>
+            <IconButton 
+            onClick={handleClick} 
+            sx={{ ml: 2 }}
+            >
               <FaceIcon fontSize="medium" />
             </IconButton>
           </Tooltip>

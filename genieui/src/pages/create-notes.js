@@ -7,7 +7,7 @@ import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Facebook as FacebookIcon } from '../icons/facebook';
 import { Google as GoogleIcon } from '../icons/google';
-import axiosInstance from './axios';
+import axiosInstance from 'src/components/axios';
 import { useState } from 'react';
 import AlertTemplate from "react-alert-template-basic";
 import { positions, Provider } from "react-alert";
@@ -19,7 +19,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 
 
-const createNotes = () => {
+const CreateNotes = () => {
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -200,4 +200,4 @@ const createNotes = () => {
   );
 };
 
-export default createNotes;
+export default CreateNotes;

@@ -7,10 +7,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "export": "next export",
     "lint": "next lint",
-    "lint-fix": "next lint --fix"
+    "lint-fix": "next lint --fix",
+    "heroku-postbuild":"npm run build"
   },
   "dependencies": {
     "@emotion/cache": "^11.5.0",
@@ -24,12 +25,14 @@
     "@tinymce/tinymce-react": "^4.2.0",
     "axios": "^0.27.2",
     "chart.js": "^3.5.1",
+    "cors": "^2.8.5",
     "date-fns": "^2.25.0",
+    "dotenv": "^16.0.1",
     "draft-js": "^0.11.7",
     "formik": "^2.1.5",
     "history": "^5.0.0",
     "mui-rte": "^2.0.1",
-    "next": "^12.2.4",
+    "next": "^12.2.5",
     "nprogress": "^0.2.0",
     "prettier": "^2.7.1",
     "prop-types": "^15.7.2",
@@ -45,6 +48,10 @@
     "text-selection-react": "^1.1.8",
     "uuid": "^8.3.0",
     "yup": "^0.32.9"
+  },
+  "engines": {
+    "node": "16.15.1",
+    "npm": "8.11.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
