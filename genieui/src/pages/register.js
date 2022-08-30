@@ -16,12 +16,15 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState, useEffect } from 'react';
 import axiosInstance from 'src/components/axios';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 
 const Register = () => {
 
   var [usernameError, setUserNameError] = useState([''])
   var [emailError, setEmailError] = useState([''])
+
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter();
   const formik = useFormik({
@@ -56,20 +59,25 @@ const Register = () => {
         )
     }),
     onSubmit: values => {
-
+      setLoading(true)
       axiosInstance.post(
         'auth/register', values
       ).then((response)=>{
         if(response.statusText=="Created"){
+          setLoading(false);
           router.push('/login')
         }
       }).catch((errors)=>{
-
+        
       if(errors.response.data.username){
         setUserNameError("Username not available")
+        setEmailError("");
+        setLoading(false);
 
       }else if(errors.response.data.email){
         setEmailError("Email not available")
+        setUserNameError("");
+        setLoading(false);
       }
 
       })
@@ -85,7 +93,7 @@ const Register = () => {
     <>
       <Head>
         <title>
-          Register | Material Kit
+          Register | Genie
         </title>
       </Head>
       <Box
@@ -223,16 +231,17 @@ const Register = () => {
               </FormHelperText>
             )}
             <Box sx={{ py: 2 }}>
-              <Button
+              <LoadingButton
                 color="primary"
                 //disabled={formik.isSubmitting}
+                loading={loading}
                 fullWidth
                 size="large"
                 type="submit"
                 variant="contained"
               >
                 Sign Up Now
-              </Button>
+              </LoadingButton>
             </Box>
             <Typography
               color="textSecondary"

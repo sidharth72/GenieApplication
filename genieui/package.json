@@ -11,7 +11,7 @@
     "export": "next export",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
-    "heroku-postbuild":"npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@emotion/cache": "^11.5.0",
@@ -31,6 +31,7 @@
     "draft-js": "^0.11.7",
     "formik": "^2.1.5",
     "history": "^5.0.0",
+    "jspdf": "^2.5.1",
     "mui-rte": "^2.0.1",
     "next": "^12.2.5",
     "nprogress": "^0.2.0",

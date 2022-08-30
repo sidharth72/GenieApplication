@@ -73,7 +73,7 @@ export default function PermanentDrawerRight() {
   var style =
     typeof window !== "undefined" && windowSize.innerWidth <= 728
       ? { marginRight: "10px", marginLeft: "10px", marginBottom: "30px" }
-      : { marginRight: "140px", marginLeft: "140px", marginBottom: "30px" };
+      : { marginRight: "135px", marginLeft: "135px", marginBottom: "30px" };
 
   if (typeof window !== "undefined") {
     localStorage.getItem("notesTitle");
@@ -114,7 +114,7 @@ export default function PermanentDrawerRight() {
 
           <Button
             size="small"
-            color="secondary"
+            color="success"
             onClick={() => router.push("/edit-notes")}
             startIcon={<EditIcon fontSize="small" />}
             sx={{ mr: 1 }}

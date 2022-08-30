@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { Box, Container, Grid, IconButton, Pagination } from '@mui/material';
 import { products } from '../__mocks__/products';
-import { TitleListToolbar } from '../components/product/title-list-toolbar';
+
 import { ProductCard } from '../components/product/product-card';
 import { DashboardLayout } from '../components/dashboard-layout';
 import { styled } from '@mui/material/styles';
@@ -35,16 +35,30 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
+import {
+  TextField,
+  InputAdornment,
+  SvgIcon
+} from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
+import SearchIcon from '@mui/icons-material/Search';
+import UploadIcon from '@mui/icons-material/Upload';
+import AddIcon from '@mui/icons-material/Add';
 
 
-const Titles = () => {
+
+
+const Titles = (props) => {
 
   const [userData, setUserData] = useState([]);
   const router = useRouter();
-  const [reloading, setReloading] = useState(false)
-  const [showModal, setShowModal] = useState();
+  const [reloading, setReloading] = useState(true)
+  const [showModal, setShowModal] = useState(false);
   const [selectedID, setSelectedID] = useState();
   const [selectedTitle, setSelectedTitle] = useState();
+
+  const [inputText, setInputText] = useState("");
   const theme = useTheme();
 
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -52,6 +66,21 @@ const Titles = () => {
   const handleClose = () => {
     setShowModal(false)
   };
+
+  const inputHandler = (e) => {
+    var lowercase = e.target.value.toLowerCase();
+    setInputText(lowercase);
+  }
+
+  // Filter data for search
+  const filteredData = userData.filter((el)=>{
+    if(inputText == ""){
+      return el;
+    }
+    else{
+      return el.title.toLowerCase().includes(inputText);
+    }
+  })
 
   const handleCancel = () => {
     setShowModal(false);
@@ -63,9 +92,14 @@ const Titles = () => {
   const getData = () => {
     axiosInstance.get("notesapi/create/").then((response)=>{
       setUserData(response.data);
-      setReloading(false)
+      if(response.data){
+        setReloading(false)
+      }
     })
   }
+
+  // Search title from list of title
+
 
   useEffect(()=>{
     getData();
@@ -87,13 +121,89 @@ const Titles = () => {
       }}
     >
       <Container maxWidth={false}>
-        <TitleListToolbar />
+      
+      <Box>
+    <Box
+      sx={{
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        m: -1
+      }}
+    >
+      <Typography
+        sx={{ m: 1 }}
+        variant="h4"
+      >
+        Topics
+      </Typography>
+      <Box sx={{ m: 1 }}>
+        <Button
+          startIcon={(<UploadIcon fontSize="small" />)}
+          sx={{ mr: 1 }}
+        >
+          Import
+        </Button>
+        <Button
+          startIcon={(<DownloadIcon fontSize="small" />)}
+          sx={{ mr: 1 }}
+        >
+          Export
+        </Button>
+        <Button
+          onClick={()=>router.push('/create-notes')}
+         startIcon={(<AddIcon fontSize="small" />)}
+          color="primary"
+          variant="contained"
+        >
+          Create
+        </Button>
+      </Box>
+    </Box>
+    <Box sx={{ mt: 3 }}>
+      <Card>
+        <CardContent sx={{backgroundColor:"#F9FAFC"}}>
+          <Box sx={{backgroundColor:"#F9FAFC", maxWidth: 500 }}>
+            <TextField
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SvgIcon
+                      fontSize="small"
+                      color="action"
+                    >
+                      <SearchIcon />
+                    </SvgIcon>
+                  </InputAdornment>
+                )
+              }}
+              placeholder="Search Topics"
+              variant="outlined"
+              onChange={inputHandler}
+            />
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
+  </Box>
 
   <Box 
     sx={{padding:"0px",marginTop:"30px", width: '100%', maxWidth: "100%", bgcolor: 'transparent' }}>
       <nav aria-label="">
-        {
-          userData.reverse().map((value, index)=>{
+        {reloading && 
+
+        <Box
+        style={{ minHeight: '50vh' }}
+        sx={{ display: 'flex', justifyContent:"center", alignItems:"center", direction:"column", marginRight:"0"}}>
+        <CircularProgress 
+        color="primary"/>
+        </Box>
+        
+        }
+        {!reloading &&
+          filteredData.reverse().map((value, index)=>{
 
             return(
                 <div key={index}>
@@ -156,7 +266,8 @@ const Titles = () => {
                   
               <Dialog
                 fullScreen={fullScreen}
-                open={showModal}
+                open={(showModal!=="undefined") ? showModal : null}
+                message={"Props not found lol"}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
               >

@@ -14,7 +14,7 @@ import { positions, Provider } from "react-alert";
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 
@@ -164,7 +164,7 @@ const CreateNotes = () => {
                         variant="text"
                         loading={false}
                         loadingPosition='end'
-                        endIcon={(<ArrowRightIcon fontSize="large" />)}
+                        //endIcon={(<ArrowRightIcon fontSize="large" />)}
                             //disabled={formik.isSubmitting}
                         size="medium"
                        
@@ -176,13 +176,14 @@ const CreateNotes = () => {
 
                                   
                       <LoadingButton
-                        color="primary"
+                        color="secondary"
                         variant="contained"
+                        size="small"
                         loading={loading}
                         loadingPosition='end'
-                        endIcon={(<ArrowRightIcon fontSize="large" />)}
+                        endIcon={(<KeyboardArrowRightIcon fontSize="large" />)}
                             //disabled={formik.isSubmitting}
-                        size="medium"
+                  
                        
                         onClick={formik.handleSubmit}     
                       >

@@ -15,6 +15,8 @@ import { Users as UsersIcon } from '../icons/users';
 import { XCircle as XCircleIcon } from '../icons/x-circle';
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
+import BookIcon from '@mui/icons-material/Book';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 const items = [
   {
@@ -24,15 +26,20 @@ const items = [
   },
   {
     href: '/titles',
-    icon: (<UsersIcon fontSize="small" />),
-    title: 'Your Notes'
+    icon: (<LibraryBooksIcon fontSize="small" />),
+    title: 'Notes Wizard'
+  },
+  {
+    href: '/titles',
+    icon: (<BookIcon fontSize="small" />),
+    title: 'e-book Wizard'
   },
   {
     href: '/products',
-    icon: (<ShoppingBagIcon fontSize="small" />),
-    title: 'Products'
+    icon: (<CogIcon fontSize="small" />),
+    title: 'Other Tools'
   },
-  {
+  /*{
     href: '/account',
     icon: (<UserIcon fontSize="small" />),
     title: 'Account'
@@ -40,7 +47,12 @@ const items = [
   {
     href: '/notes',
     icon: (<CogIcon fontSize="small" />),
-    title: 'Create Notes'
+    title: 'Notes wizard'
+  },
+  {
+    href: '/notes',
+    icon: (<CogIcon fontSize="small" />),
+    title: 'Short Summary'
   },
   {
     href: '/login',
@@ -56,7 +68,7 @@ const items = [
     href: '/404',
     icon: (<XCircleIcon fontSize="small" />),
     title: 'Error'
-  }
+  }*/
 ];
 
 export const DashboardSidebar = (props) => {
@@ -217,3 +229,5 @@ DashboardSidebar.propTypes = {
   onClose: PropTypes.func,
   open: PropTypes.bool
 };
+
+

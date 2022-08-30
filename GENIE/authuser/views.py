@@ -1,3 +1,6 @@
+
+from math import perm
+from re import A
 from django.shortcuts import render
 from rest_framework.response import Response
 from .serilalizers import UserSerializer, LoginUserSerializer
@@ -17,17 +20,14 @@ from rest_framework import permissions
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
+
+
 class ObtainTokenPairWithColorView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
-
 # Create your views here.
 
-class UserCreate2(generics.CreateAPIView):
-    authentication_classes = ()
-    permission_classes = ()
-    serializer_class = MyTokenObtainPairSerializer
 
 
 class UserCreate(APIView):
@@ -37,6 +37,7 @@ class UserCreate(APIView):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+          
             if user:
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)
@@ -63,6 +64,7 @@ class LoginView(APIView):
             return Response({'token':token.key})
 
 
+
 # Logut view
 class Logout(APIView):
     permission_classes = [permissions.AllowAny]
@@ -74,6 +76,12 @@ class Logout(APIView):
         except:
             return Response("Problem occured",status=status.HTTP_400_BAD_REQUEST)
         return Response("Success")
+
+
+class UserCreate2(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = MyTokenObtainPairSerializer
 
 
     

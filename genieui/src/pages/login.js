@@ -14,9 +14,13 @@ import { positions, Provider } from "react-alert";
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingButton from '@mui/lab/LoadingButton';
+
 
 
 const Login = () => {
+
+  const [loading, setLoading] = useState(false);
 
   const notify = () => {
     
@@ -48,18 +52,21 @@ const Login = () => {
           'Password is required')
     }),
     onSubmit: values => {
+      setLoading(true)
       axiosInstance.post('auth/login/', values
       
       ).then((response)=>{
         if(response.data){
+          setLoading(false)
           localStorage.setItem('access_token', response.data.access);
           localStorage.setItem('refresh_token', response.data.refresh)
-          axiosInstance.defaults.headers['Authorization'] = 'Bearer '+localStorage.getItem('access_token');
+          axiosInstance.defaults.headers['Authorization'] = 'Bearer '+ localStorage.getItem('access_token');
           router.push('/')
           
         }
       }).catch((errors)=>{
-        if(errors.response.status===401){
+        setLoading(false)
+        if(errors.response.statusText === "Unauthorized"){
           notify();
 
         }
@@ -70,7 +77,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Login | Material Kit</title>
+        <title>Login | Genie</title>
       </Head>
       <Box
         component="main"
@@ -187,8 +194,10 @@ const Login = () => {
               variant="outlined"
             />
             <Box sx={{ py: 2 }}>
-              <Button
+              <LoadingButton
                 color="primary"
+                loading={loading}
+                
                 //disabled={formik.isSubmitting}
                 fullWidth
                 size="large"
@@ -198,7 +207,7 @@ const Login = () => {
                 
               >
                 Sign In Now
-              </Button>
+              </LoadingButton>
             </Box>
             <ToastContainer/>
             <Typography

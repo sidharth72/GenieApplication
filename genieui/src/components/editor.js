@@ -185,7 +185,7 @@ export const AddSection = (props) => {
 
               <Tooltip title="Export as PDF">
                 <Button
-                  color="secondary"
+                  color="success"
                   startIcon={<PictureAsPdfOutlinedIcon fontSize="small" />}
                   sx={{ mr: 1 }}
                 ></Button>
@@ -201,14 +201,14 @@ export const AddSection = (props) => {
 
               <Tooltip title="Export as raw text">
                 <Button
-                  color="secondary"
+                  color="success"
                   variant="text"
                   startIcon={<FormatColorTextIcon fontSize="small" />}
                 ></Button>
               </Tooltip>
               <Tooltip title="Export as handwritten data(JPG)">
                 <Button
-                  color="secondary"
+                  color="success"
                   variant="text"
                   startIcon={<CreateOutlinedIcon fontSize="small" />}
                 ></Button>
@@ -234,7 +234,7 @@ export const AddSection = (props) => {
             <br />
             <Editor
               apiKey="sb3nza10ov6zu4qlikx33uk6g6wl2i3az3ocv5c7rgxrqi8d"
-              key={2}
+              key={userData.id+1}
               initialValue={userData.response_from_ai}
               init={{
                 height: 600,
@@ -266,7 +266,7 @@ export const AddSection = (props) => {
                   "alignright alignjustify | bullist numlist outdent indent | " +
                   "removeformat | help",
                 content_style:
-                  'body { background:"#fff"; font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size:16px }',
+                  'body {font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size:16px}',
                 branding: false,
               }}
               onEditorChange={(e) => {
@@ -299,6 +299,8 @@ export const AddSection = (props) => {
                                 onSave={Change}
                   
                       /> */}
+
+                      
           </CardContent>
 
           <Box
@@ -328,7 +330,7 @@ export const AddSection = (props) => {
                           </Tooltip>*/}
 
             <LoadingButton
-              color="primary"
+              color="success"
               variant="contained"
               loading={loading}
               startIcon={<SmartToyIcon fontSize="large" />}

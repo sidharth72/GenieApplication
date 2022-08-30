@@ -9,15 +9,18 @@ import django.contrib.auth.password_validation as validators
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
+# User Login
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     @classmethod
     def get_token(cls, user):
+  
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
-        # Add custom claims
+        token['username'] = user.username
         return token
 
 
+# User Registration
 class UserSerializer(serializers.ModelSerializer):
     """
     Currently unused in preference of the below.
@@ -40,6 +43,19 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+    def validate_username(self, value):
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("This username is not available")
+        return value
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("The email is not available")
+
+        return value
+
+
 
 
 class UserSerializer2(serializers.ModelSerializer):

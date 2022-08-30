@@ -15,6 +15,7 @@ import React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import axiosInstance from "src/components/axios";
+import BoltIcon from '@mui/icons-material/Bolt';
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -79,6 +80,15 @@ export const DashboardNavbar = (props) => {
 
           <Box sx={{ flexGrow: 3 }} />
 
+          <Tooltip title="Upgrade">
+            <IconButton sx={{ ml: 3 }}
+            
+              >
+                <BoltIcon fontSize="medium" />
+              
+            </IconButton>
+          </Tooltip>
+
           <Tooltip title="Notifications">
             <IconButton sx={{ ml: 3 }}>
               <Badge 
@@ -109,8 +119,12 @@ export const DashboardNavbar = (props) => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>Username</MenuItem>
+            <MenuItem onClick={handleClose}>email</MenuItem>
+            <MenuItem onClick={handleClose}>pricing</MenuItem>
+            <MenuItem onClick={handleClose}>Policies</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
+            
             <MenuItem
               onClick={() => {
                 handleClose;
