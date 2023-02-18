@@ -3,8 +3,8 @@ from rest_framework.routers import DefaultRouter
 from .import views
 
 router = DefaultRouter()
-router.register('notesapi/update', views.StudyMaterialServiceViewset,basename="StudyMaterial")
-router.register('notesapi/create', views.NotesViewset, basename="notes")
+router.register('document', views.DocumentViewset,basename="Document")
+router.register('project', views.ProjectViewset, basename="Project")
 
 #router.register(r'users', views.UserViewSet,basename="users")
 

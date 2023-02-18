@@ -2,26 +2,29 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-class CreateStudyMaterialService(models.Model):
-	query = models.CharField(default=" ",blank=True,max_length=1000)
-	response_from_ai = models.TextField(blank=True, null=True)
+class Document(models.Model):
+	doc_title = models.CharField(max_length=300, blank=True)
+	description = models.TextField(blank=True)
+	content = models.TextField(blank=True)
 	
 	class Meta:
-		verbose_name = "Material"
-		verbose_name_plural = "Materials"
+		verbose_name = "Document"
+		verbose_name_plural = "Documents"
 
 	def __str__(self):
-		return self.query
+		return self.doc_title
 
-class Notes(models.Model):
-	title = models.CharField(null=True, max_length=225)
-	desc = models.TextField(blank=True, null=True)
+class Project(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	data = models.ForeignKey(CreateStudyMaterialService, related_name="notesdata", on_delete=models.CASCADE)
+	project_title = models.CharField(null=True, max_length=225)
+	document = models.ManyToManyField(Document)
 
 	class Meta:
-		verbose_name = "Note"
-		verbose_name_plural = "Notes"
+		verbose_name = "Project"
+		verbose_name_plural = "Projects"
+
+	def __str__(self):
+		return self.project_title
 	
 
 

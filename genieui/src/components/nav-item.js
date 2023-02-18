@@ -27,21 +27,26 @@ export const NavItem = (props) => {
           component="a"
           startIcon={icon}
           disableRipple
+          variant="body2"
           sx={{
-            backgroundColor: active && 'rgba(255,255,255, 0.08)',
+            backgroundColor: active && 'rgba(0, 0, 0, 0.08)',
+            boxShadow:"none",
+            fontfamily:'"InterVariable", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
             borderRadius: 1,
-            color: active ? 'secondary.main' : 'neutral.300',
-            fontWeight: active && 'fontWeightBold',
+            padding:"10px",
+            color: active ? /*'#acb6c4'*/'#101827' : '#101827',
+            fontWeight: '500',
+            fontSize:"10",
             justifyContent: 'flex-start',
             px: 3,
             textAlign: 'left',
             textTransform: 'none',
             width: '100%',
             '& .MuiButton-startIcon': {
-              color: active ? 'secondary.main' : 'neutral.400'
+              color: active ? 'primary' : 'rgb(99, 115, 129)'
             },
             '&:hover': {
-              backgroundColor: 'rgba(255,255,255, 0.08)'
+              backgroundColor: 'none'
             }
           }}
         >

@@ -1,7 +1,8 @@
+from pydoc import Doc
 from django.contrib import admin
-from.models import CreateStudyMaterialService, Notes
+from.models import Project, Document
 
 # Register your models here.
 
-admin.site.register(CreateStudyMaterialService)
-admin.site.register(Notes)
+admin.site.register(Document)
+admin.site.register(Project)

@@ -90,6 +90,7 @@ export const theme = createTheme({
           flexDirection: 'column',
           minHeight: '100%',
           width: '100%',
+          overflowX:'hidden'
           
         },
         '#__next': {
@@ -142,7 +143,7 @@ export const theme = createTheme({
       600: '#4B5563',
       700: '#374151',
       800: '#1F2937',
-      900: '#111827'
+      900: '#fff'//'#111827'
     },
     action: {
       active: '#6B7280',
@@ -153,7 +154,7 @@ export const theme = createTheme({
       disabled: 'rgba(55, 65, 81, 0.26)'
     },
     background: {
-      default: '#F9FAFC',
+      default: '#f7f7f7',
       paper: '#FFFFFF'
     },
     divider: '#E6E8F0',

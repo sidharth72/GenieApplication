@@ -26,11 +26,12 @@ const {
         return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)'
       })(),
       RESTURL_SESSIONS: (() => {
-        if (isDev) return 'http://localhsot:8000/'
+        if (isDev) return 'http://localhost:8000/'
         if (isProd) return 'https://genieapp-backend.herokuapp.com/'
         if (isStaging) return 'http://localhost:11639'
         return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)'
       })(),
+
     }
   
     // next.config.js object

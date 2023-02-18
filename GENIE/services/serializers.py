@@ -1,25 +1,26 @@
 from importlib.metadata import requires
 from rest_framework import serializers
-from .models import CreateStudyMaterialService, Notes
+from .models import Project, Document
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
-class StudyMaterialServiceSerializer(serializers.ModelSerializer):
+class DocumentSerializer(serializers.ModelSerializer):
 
 	class Meta:
-		model = CreateStudyMaterialService
+		model = Document
 		fields = [
 			"id",
-			"query",
-			"response_from_ai",
+			"doc_title",
+			"description",
+			"content"
 
 		]
 
-class NoteSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
-	data = StudyMaterialServiceSerializer()
+class ProjectSerializer(WritableNestedModelSerializer,serializers.ModelSerializer):
+	document = DocumentSerializer(many=True)
 	class Meta:
-		model = Notes
-		fields = ['id','user','title','desc','data']
+		model = Project
+		fields = ['id','user','project_title','document']
 		
 
 

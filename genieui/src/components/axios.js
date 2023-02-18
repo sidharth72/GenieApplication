@@ -15,7 +15,7 @@ if (typeof window !== "undefined") {
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
-  timeout: 30000,
+  timeout: 59000,
   headers: {
     Authorization: get_data ? "Bearer " + get_data : null,
 
@@ -35,8 +35,6 @@ axiosInstance.interceptors.response.use(
   async function (error) {
     const originalRequest = error.config;
 
-    console.log(error.response.data.code)
-
     if (typeof error.response === "undefined") {
       return Promise.reject(error);
     }
@@ -54,13 +52,13 @@ axiosInstance.interceptors.response.use(
         error.response.statusText === "Unauthorized")
         ||
         // Check if not autheticated
-      error.response.status === 403 && error.response.statusText === "Forbidden" ||
-      error.response.status === 500
+        error.response.status === 403 && error.response.statusText === "Forbidden" ||
+        error.response.status === 500
     ) {
 
       const refreshToken = localStorage.getItem("refresh_token");
 
-      if (refreshToken && refreshToken !== "undefined") {
+      if (refreshToken) {
         const tokenParts = JSON.parse(window.atob(refreshToken.split(".")[1]));
         // exp date in token is expressed in seconds, while now() returns milliseconds:
         const now = Math.ceil(Date.now() / 1000);
@@ -77,9 +75,9 @@ axiosInstance.interceptors.response.use(
               originalRequest.headers["Authorization"] = "Bearer " + response.data.access;
 
               return axiosInstance(originalRequest);
-            })
+            }
+          )
             .catch((err) => {
-              //console.log(err);
             });
         } else {
 

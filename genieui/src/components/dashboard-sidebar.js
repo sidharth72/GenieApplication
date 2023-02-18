@@ -15,41 +15,42 @@ import { Users as UsersIcon } from '../icons/users';
 import { XCircle as XCircleIcon } from '../icons/x-circle';
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
-import BookIcon from '@mui/icons-material/Book';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import CollectionsBookmarkOutlinedIcon from '@mui/icons-material/CollectionsBookmarkOutlined';
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import CreateIcon from '@mui/icons-material/Create';
 
 const items = [
   {
     href: '/',
-    icon: (<ChartBarIcon fontSize="small" />),
-    title: 'Dashboard'
+    icon: (<CreateIcon fontSize="small" />),
+    title: 'How to write?'
   },
   {
-    href: '/titles',
-    icon: (<LibraryBooksIcon fontSize="small" />),
-    title: 'Notes Wizard'
+    href: '/create-article',
+    icon: (<LibraryBooksOutlinedIcon fontSize="small" />),
+    title: 'Your Posts'
   },
   {
-    href: '/titles',
-    icon: (<BookIcon fontSize="small" />),
-    title: 'e-book Wizard'
+    href: '/projects',
+    icon: (<CollectionsBookmarkOutlinedIcon fontSize="small" />),
+    title: 'Suggest Article'
   },
   {
     href: '/products',
     icon: (<CogIcon fontSize="small" />),
     title: 'Other Tools'
   },
-  /*{
-    href: '/account',
+  {
+    href: '/products',
     icon: (<UserIcon fontSize="small" />),
-    title: 'Account'
+    title: 'Perform Task'
   },
   {
     href: '/notes',
     icon: (<CogIcon fontSize="small" />),
-    title: 'Notes wizard'
+    title: 'Analyser'
   },
-  {
+  /*{
     href: '/notes',
     icon: (<CogIcon fontSize="small" />),
     title: 'Short Summary'
@@ -99,7 +100,9 @@ export const DashboardSidebar = (props) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100%',
+          //backgroundColor:""
+          
         }}
       >
         <div>
@@ -122,29 +125,33 @@ export const DashboardSidebar = (props) => {
             <Box
               sx={{
                 alignItems: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
                 cursor: 'pointer',
                 display: 'flex',
                 justifyContent: 'space-between',
                 px: 3,
                 py: '11px',
-                borderRadius: 1
+                borderRadius:'10px',
+                backgroundColor:"#F9FAFC"
+                //boxShadow:"rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;"
+                
+                
               }}
             >
               <div>
                 <Typography
-                  color="inherit"
+                  color="#101828"
                   variant="subtitle1"
+
                 >
-                  Acme Inc
+                  Your Name
                 </Typography>
                 <Typography
-                  color="neutral.400"
+                  color="#101828"
                   variant="body2"
                 >
                   Your tier
                   {' '}
-                  : Premium
+                  : <span style={{color:"#10B981"}} >Free</span>
                 </Typography>
               </div>
               <SelectorIcon
@@ -157,13 +164,8 @@ export const DashboardSidebar = (props) => {
             </Box>
           </Box>
         </div>
-        <Divider
-          sx={{
-            borderColor: '#2D3748',
-            my: 3
-          }}
-        />
-        <Box sx={{ flexGrow: 1 }}>
+        <br/>
+        <Box sx={{ flexGrow: 1}}>
           {items.map((item) => (
             <NavItem
               key={item.title}
@@ -173,7 +175,7 @@ export const DashboardSidebar = (props) => {
             />
           ))}
         </Box>
-        <Divider sx={{ borderColor: '#2D3748' }} />
+
         <Box
           sx={{
             px: 2,
@@ -195,7 +197,10 @@ export const DashboardSidebar = (props) => {
           sx: {
             backgroundColor: 'neutral.900',
             color: '#FFFFFF',
-            width: 280
+            width: 245,
+            border:"none",
+            boxShadow:"none"
+
           }
         }}
         variant="permanent"
@@ -205,6 +210,7 @@ export const DashboardSidebar = (props) => {
     );
   }
 
+  
   return (
     <Drawer
       anchor="left"
@@ -212,9 +218,11 @@ export const DashboardSidebar = (props) => {
       open={open}
       PaperProps={{
         sx: {
-          backgroundColor: 'neutral.900',
-          color: '#FFFFFF',
-          width: 280
+          backgroundColor: '#fff',
+          color: '#121212',
+          border:"none",
+          boxShadow:"none",
+          width: 250
         }
       }}
       sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
