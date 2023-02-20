@@ -148,7 +148,8 @@ export const AddSection = (props) => {
   var sendText = () =>{
     setAnalyzeLoading(true)
     var data = {
-    "text": text+" format using p tag, bold important points, explain in detail", 
+    "text": text+` 
+    format using p tag, bold important points,`, 
     "tone": tone, 
     "language": language, 
     "words":words
@@ -357,7 +358,7 @@ export const AddSection = (props) => {
               >
                 <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
                   Image to Text
-                  <h6 style={{color:"red"}}>Atmost 8 lines of text image is preferable </h6>
+                  <h6 style={{color:"red"}}>Atmost 5 lines of text image is preferable.</h6>
                 </DialogTitle>
                 <DialogContent>
 

@@ -206,7 +206,6 @@ const Titles = (props) => {
       <Typography 
         variant="h4"
         sx={{fontWeight:"700"}}
-        fontFamily="cursive"
       >
         Your Wishes
       </Typography>
@@ -225,7 +224,7 @@ const Titles = (props) => {
           color="primary"
           variant="contained"
         >
-          Create
+          Make
         </Button>
       </Box>
     </Box>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -9,6 +9,7 @@ import {
   Grid,
   TextField
 } from '@mui/material';
+import axiosInstance from "src/components/axios";
 
 const states = [
   {
@@ -27,7 +28,7 @@ const states = [
 
 export const AccountProfileDetails = (props) => {
   const [values, setValues] = useState({
-    firstName: 'Katarina',
+    firstName: '',
     lastName: 'Smith',
     email: 'demo@devias.io',
     phone: '',
@@ -35,12 +36,29 @@ export const AccountProfileDetails = (props) => {
     country: 'USA'
   });
 
+  const [userData, setUserData] = useState()
+
   const handleChange = (event) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
   };
+
+  const getUserData = () => {
+    axiosInstance.get("api/Profile/").then((response)=>{
+      setUserData(response.data);
+      if(response.data){
+        
+      }
+    })
+  }
+
+  useEffect(()=>{
+    getUserData();
+  }, [])
+
+  console.log(userData)
 
   return (
     <form
@@ -71,7 +89,7 @@ export const AccountProfileDetails = (props) => {
                 name="firstName"
                 onChange={handleChange}
                 required
-                value={values.firstName}
+                value={userData}
                 variant="outlined"
               />
             </Grid>

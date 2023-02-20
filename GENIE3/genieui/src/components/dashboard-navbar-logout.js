@@ -16,6 +16,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import axiosInstance from "src/components/axios";
 import BoltIcon from '@mui/icons-material/Bolt';
+import PolicyIcon from '@mui/icons-material/Policy';
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -122,11 +126,8 @@ export const DashboardNavbar = (props) => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Username</MenuItem>
-            <MenuItem onClick={handleClose}>email</MenuItem>
-            <MenuItem onClick={handleClose}>pricing</MenuItem>
-            <MenuItem onClick={handleClose}>Policies</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}><PolicyIcon color="primary"/> Policies</MenuItem>
+            <MenuItem onClick={()=>{router.push('/account')}}><PersonIcon color="primary"/>My account</MenuItem>
             
             <MenuItem
               onClick={() => {
@@ -134,6 +135,7 @@ export const DashboardNavbar = (props) => {
                 Logout();
               }}
             >
+            <LogoutIcon color="primary"/>
               Logout
             </MenuItem>
           </Menu>

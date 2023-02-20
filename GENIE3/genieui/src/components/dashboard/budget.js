@@ -19,7 +19,7 @@ export const Budget = (props) => (
             gutterBottom
             variant="overline"
           >
-            BUDGET
+            
           </Typography>
           <Typography
             color="textPrimary"

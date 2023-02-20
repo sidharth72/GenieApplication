@@ -14,12 +14,12 @@ from django.contrib.auth import login
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import logout
-from .serilalizers import MyTokenObtainPairSerializer, UserSerializer
+from .serilalizers import MyTokenObtainPairSerializer, UserSerializer, ProfileSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import permissions
 from rest_framework_simplejwt.tokens import RefreshToken
-
-
+from.models import Profile
+from rest_framework.permissions import IsAuthenticated
 
 
 class ObtainTokenPairWithColorView(TokenObtainPairView):
@@ -51,7 +51,10 @@ class LoginView(APIView):
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
-        user = authenticate(username=username, password=password)
+        user = authenticate(
+            username=username, 
+            password=password,
+            )
         try:
             # IF token exists then return token
             if user:
@@ -84,4 +87,24 @@ class UserCreate2(generics.CreateAPIView):
     serializer_class = MyTokenObtainPairSerializer
 
 
+class ProfileView(APIView):
+
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        data = Profile.objects.all()
+        #if request.user == data.user:
+        serializer = ProfileSerializer(data, many=True)
+        return Response(serializer.data)
+
+    def put(self, request, format=None, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        instance = Profile.objects.get(pk=pk)
+        data = request.data
+        serializer = NoteSerializer(instance=instance, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     

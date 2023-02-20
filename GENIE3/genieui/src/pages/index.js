@@ -9,8 +9,23 @@ import { TotalCustomers } from '../components/dashboard/total-customers';
 import { TotalProfit } from '../components/dashboard/total-profit';
 import { TrafficByDevice } from '../components/dashboard/traffic-by-device';
 import { DashboardLayout } from '../components/dashboard-layout';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import { useRouter } from 'next/router'
+import TopicOutlinedIcon from '@mui/icons-material/Topic';
+import NotesIcon from '@mui/icons-material/Notes';
+import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
+import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
+import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
+import DocumentScannerOutlinedIcon from '@mui/icons-material/DocumentScannerOutlined';
+import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
+import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
-const Dashboard = () => (
+const Dashboard = () => {
+  const router = useRouter();
+
+return(
   <>
     <Head>
       <title>
@@ -36,7 +51,21 @@ const Dashboard = () => (
             xl={3}
             xs={12}
           >
-            <Budget />
+            <Box
+              sx={{backgroundColor:"#fff", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+            <h3>Create Topics</h3><br/>
+            <Divider/><br/>
+
+            <TopicOutlinedIcon sx={{fontSize:"60px",}}/>
+            </Box>
+
+
           </Grid>
           <Grid
             item
@@ -45,7 +74,18 @@ const Dashboard = () => (
             sm={6}
             xs={12}
           >
-            <TotalCustomers />
+            <Box
+              sx={{backgroundColor:"#fff", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+            <h3>Write Notes</h3><br/>
+            <Divider/><br/>
+            <NotesIcon sx={{fontSize:"60px"}}/>
+            </Box>
           </Grid>
           <Grid
             item
@@ -54,7 +94,19 @@ const Dashboard = () => (
             sm={6}
             xs={12}
           >
-            <TasksProgress />
+            <Box
+              sx={{backgroundColor:"#fff", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+            <h3>Q & A</h3><br/>
+            <Divider/><br/>
+            <QuizOutlinedIcon sx={{fontSize:"60px"}}/>
+
+            </Box>
           </Grid>
           <Grid
             item
@@ -63,49 +115,116 @@ const Dashboard = () => (
             sm={6}
             xs={12}
           >
-            <TotalProfit sx={{ height: '100%' }} />
+          <Box
+              sx={{backgroundColor:"#fff", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+            <h3>Summarize</h3><br/>
+            <Divider/><br/>
+            <SummarizeOutlinedIcon sx={{fontSize:"60px"}}/>
+            </Box>
           </Grid>
+
           <Grid
             item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <Sales />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
+            lg={3}
+            sm={6}
             xl={3}
             xs={12}
           >
-            <TrafficByDevice sx={{ height: '100%' }} />
+          <Box
+              sx={{backgroundColor:"#fff", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+            <h3>Create Subtopics</h3><br/>
+            <Divider/><br/>
+            
+              <PostAddOutlinedIcon sx={{fontSize:"60px"}}/>
+            </Box>
           </Grid>
           <Grid
             item
-            lg={4}
-            md={6}
             xl={3}
+            lg={3}
+            sm={6}
             xs={12}
           >
-            <LatestProducts sx={{ height: '100%' }} />
+          <Box
+              sx={{backgroundColor:"#fff", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+            <h3>Image to Text</h3><br/>
+            <Divider/><br/>
+            <DocumentScannerOutlinedIcon sx={{fontSize:"60px"}}/>
+
+            </Box>
           </Grid>
           <Grid
             item
-            lg={8}
-            md={12}
-            xl={9}
+            xl={3}
+            lg={3}
+            sm={6}
             xs={12}
           >
-            <LatestOrders />
+          <Box
+              sx={{backgroundColor:"#fff", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+            <h3>PDF Exports</h3><br/>
+            <Divider/><br/>
+            <PictureAsPdfOutlinedIcon sx={{fontSize:"60px"}}/>
+
+            </Box>
           </Grid>
+          <Grid
+            item
+            xl={3}
+            lg={3}
+            sm={6}
+            xs={12}
+          >
+          <Box
+              sx={{backgroundColor:"#5048E5", 
+              padding:"20px",
+              boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;",
+              borderRadius:"10px"
+            }}
+            >
+
+              <Button
+                onClick={()=>router.push('/create-notes')}
+                startIcon={(<AutoAwesomeOutlinedIcon sx={{fontSize:"40px"}} />)}
+                color="primary"
+                variant="contained"
+                sx={{padding:"50px", fontSize:"20px"}}
+              >
+                Start
+              </Button>
+
+            </Box>
+          </Grid>
+          
         </Grid>
       </Container>
     </Box>
-  </>
-);
+  </>)
+}
 
 Dashboard.getLayout = (page) => (
   <DashboardLayout>

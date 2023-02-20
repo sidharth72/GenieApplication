@@ -34,6 +34,14 @@ const Register = () => {
       password: '',
     },
     validationSchema: Yup.object({
+      first_name: Yup
+        .string()
+        .max(255)
+        .required("Firstname is required"),
+      last_name: Yup
+        .string()
+        .max(255)
+        .required("Lastname is required"),
       username: Yup
         .string()
         .max(255)
@@ -59,6 +67,7 @@ const Register = () => {
         )
     }),
     onSubmit: values => {
+      console.log(values)
       setLoading(true)
       axiosInstance.post(
         'auth/register', values
@@ -133,6 +142,43 @@ const Register = () => {
                 Use your email to create a new account
               </Typography>
             </Box>
+            <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '260px' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+               <TextField
+                    error={Boolean(formik.touched.first_name && formik.errors.first_name)}
+                    fullWidth
+                    helperText={formik.touched.first_name && formik.errors.first_name}
+                    label="First Name"
+                    margin="normal"
+                    name="first_name"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    type="text"
+                    value={formik.values.first_name}
+                    variant="outlined"
+            />
+             <TextField
+                    error={Boolean(formik.touched.last_name && formik.errors.last_name)}
+                    fullWidth
+                    helperText={formik.touched.last_name && formik.errors.last_name}
+                    label="Last Name"
+                    margin="normal"
+                    name="last_name"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    type="text"
+                    value={formik.values.last_name}
+                    variant="outlined"
+            />
+
+            </Box>
+
             <TextField
               error={Boolean(formik.touched.username && formik.errors.username)}
               fullWidth
@@ -146,6 +192,7 @@ const Register = () => {
               variant="outlined"
             
             />
+
             <div style={{color:"#D14343",fontSize:"12px", marginLeft:"20px"}} 
             className='input-feedback'
             >

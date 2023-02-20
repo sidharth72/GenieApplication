@@ -24,12 +24,13 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import axiosInstance from "src/components/axios";
 import TopicOutlinedIcon from '@mui/icons-material/TopicOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 const items = [
   {
     href: '/',
-    icon: (<ChartBarIcon fontSize="small" />),
-    title: 'Dashboard'
+    icon: (<HomeOutlinedIcon fontSize="large" />),
+    title: 'Home'
   },
   {
     href: '/thesis',

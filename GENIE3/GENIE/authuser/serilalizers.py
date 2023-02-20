@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from django.core import exceptions
 import django.contrib.auth.password_validation as validators
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
+from.models import Profile
 
 # User Login
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -25,6 +25,8 @@ class UserSerializer(serializers.ModelSerializer):
     """
     Currently unused in preference of the below.
     """
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
     email = serializers.EmailField(
         required=True
     )
@@ -33,7 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password')
+        fields = ('first_name','last_name','email', 'username', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -52,7 +54,6 @@ class UserSerializer(serializers.ModelSerializer):
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("The email is not available")
-
         return value
 
 
@@ -94,3 +95,17 @@ class LoginUserSerializer(serializers.ModelSerializer):
         user = User(username=validate_data['username'],password=validate_data['password'])
         Token.objects.create(user=user)
         return user 
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = [
+            "id",
+            "user",
+            "phone_number",
+            "country",
+            "state"
+
+        ]
