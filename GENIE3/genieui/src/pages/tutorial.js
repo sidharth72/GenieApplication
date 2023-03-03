@@ -23,10 +23,10 @@ const Thesis = () => (
         {/*<SettingsNotifications />*/}
         <Box sx={{ pt: 3 }}>
 
-        <h1>Project Thesis</h1><br/>
+        <h1>How to Use Genie?</h1><br/>
 
         <div style={{fontFamily:"system-ui", fontSize:"20px"}}>
-        <h2>1. Introduction</h2>
+        <h2>Creating Notes</h2>
 <p>&nbsp;</p>
 <p>Hi there! In today's fast-paced digital world, we all want quick and reliable answers to our questions. Whether you're a student trying to finish an assignment or a teacher trying to create study materials, you know how time-consuming it can be to search through multiple pages of search results on the internet. That's where Genie comes in - it's an AI-powered tool that can generate text to help you get the answers you need fast and efficiently.</p>
 <p>&nbsp;</p>

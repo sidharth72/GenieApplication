@@ -81,7 +81,7 @@ export const AddSection = (props) => {
   const handleDownload = () => {
     const query = `<h2>${userData['query']}</h2>`;
     const content = userData['response_from_ai']
-    const allContent = `${query}` + '<br>' + `${content}`
+    const allContent = `${query}` + '<br>' + `${content}` + '<br><br><br>' + "<h3>Genie AI</h3>"
 
     const doc = new jsPDF();
 
@@ -194,7 +194,7 @@ export const AddSection = (props) => {
     },
     validationSchema: Yup.object({
       query: Yup.string().max(255).required("Just a question"),
-      response_from_ai: Yup.string().min(20).max(7200),
+      response_from_ai: Yup.string().min(20).max(1000000),
     }),
     onSubmit: (values) => {
       const subtopicsID = localStorage.getItem("subtopicsID");
@@ -420,6 +420,7 @@ export const AddSection = (props) => {
 
           <CardContent style={{ backgroundColor: "transparent", /*border:"1px solid #ddd"*/ borderRadius:"10px" }}>
             <TextField
+              sx={{padding:"20px"}}
               key={userData.id}
               error={Boolean(formik.touched.query && formik.errors.query)}
               fullWidth
@@ -430,11 +431,12 @@ export const AddSection = (props) => {
               //onBlur={formik.handleBlur}
               onChange={Change}
               defaultValue={userData.query} //formik.values.query}
-              variant="standard"
+              variant="outlined"
             />
             <br />
             <br />
             <Editor
+
               apiKey="sb3nza10ov6zu4qlikx33uk6g6wl2i3az3ocv5c7rgxrqi8d"
               key={userData.id+1}
               initialValue={userData.response_from_ai}
@@ -465,10 +467,10 @@ export const AddSection = (props) => {
                 toolbar:
                   "image undo redo | blocks | " +
                   "bold italic forecolor | alignleft aligncenter " +
-                  "alignright alignjustify | bullist numlist outdent indent | " +
-                  "removeformat | help",
+                  "alignright alignjustify | bullist numlist outdent indent | " ,
+        
                 content_style:
-                  'body {font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size:16px}',
+                  'body { font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size:16px}',
                 branding: false,
               }}
               onEditorChange={(e) => {

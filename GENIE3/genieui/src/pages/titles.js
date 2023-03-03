@@ -73,6 +73,39 @@ const Titles = (props) => {
   const pdfRef = useRef(null);
 
 
+
+
+  /*function getDataUri(url)
+    {
+      return new Promise(resolve => {
+    var image = new Image();
+    //image.setAttribute('crossOrigin', 'anonymous'); //getting images from external domain
+
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth;
+        canvas.height = this.naturalHeight; 
+
+        //next three lines for white background in case png has a transparent background
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff';  /// set white fill style
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+        resolve(canvas.toDataURL('image/jpeg'));
+    };
+
+    image.src = url;
+
+    if(image.complete || image.complete === undefined){
+      image.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      image.src = src;
+    }
+  })
+}*/
+
+
   const handleBulkExport = () => {
     const contentArray = checkedContent;
 
@@ -80,11 +113,14 @@ const Titles = (props) => {
 
     const doc = new jsPDF();
 
-    
-    //doc.marginLeft('10px')
 
-    var textFormat = doc.html(contentString, {x:10, y:5, margin:12, windowWidth:500, width:170})
+    //const imgRegex = /<img.*?src="(.*?)"/g;
 
+    //var img = getDataUri("https://developer.android.com/static/guide/topics/providers/images/content-provider-tech-stack.png")
+
+    //console.log(img)
+
+    var textFormat = doc.html(contentString, {x:10, y:5, margin:[12, 20, 12, 20], windowWidth:500, width:170})
     //doc.text(allContent, 190, 20, {align:'right'})
     //doc.text('Hey there fucking....', 20, 20)
     textFormat.save(`${contentString.slice(0, 15)}.pdf`)   
@@ -147,7 +183,6 @@ const Titles = (props) => {
     })
   }
 
-  console.log(checkedContent)
 
   const sendSubtopic = () => {
     
@@ -425,7 +460,7 @@ const Titles = (props) => {
             margin="dense"
             id="name"
             label="Your subtopic here"
-            type="email"
+            type="text"
             fullWidth
             variant="standard"
             onChange={handleTopicInputChange}
@@ -437,7 +472,9 @@ const Titles = (props) => {
         </DialogActions>
       </Dialog>
 
-      </nav>
+      </nav><br/><br/><br/>
+
+      <h6>By PyCodeMates Team</h6>
     </Box>
 
 

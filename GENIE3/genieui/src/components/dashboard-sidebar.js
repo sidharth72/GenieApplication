@@ -25,6 +25,9 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import axiosInstance from "src/components/axios";
 import TopicOutlinedIcon from '@mui/icons-material/TopicOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import {
+  Tooltip
+} from "@mui/material";
 
 const items = [
   {
@@ -121,9 +124,6 @@ export const DashboardSidebar = (props) => {
 
   }, []);
 
-
-
-
   const content = (
     <>
       <Box
@@ -212,8 +212,9 @@ export const DashboardSidebar = (props) => {
           }}
         >
         <h5 style={{textAlign:"center", backgroundColor:"#5048E5", borderRadius:"5px", padding:"5px"}}>Subtopics</h5><br/>
+        
         {subtopics.map((topics) => (
-
+          <Tooltip title={topics['query']}>
           <Button onClick={()=>{
               localStorage.setItem("subtopicsID", topics['id']);
               //localStorage.setItem('notesID', value['id']);
@@ -229,8 +230,11 @@ export const DashboardSidebar = (props) => {
 
               {topics['query'].length > 20 ? topics['query'].substring(0, 14) + "..." : topics['query']}
             </Button>
+            </Tooltip>
+            
 
           ))}
+
 
 
         </Box>

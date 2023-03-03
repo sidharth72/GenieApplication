@@ -22,6 +22,8 @@ import DocumentScannerOutlinedIcon from '@mui/icons-material/DocumentScannerOutl
 import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
+
+
 const Dashboard = () => {
   const router = useRouter();
 
@@ -32,6 +34,7 @@ return(
         Dashboard | Genie
       </title>
     </Head>
+    <h2 style={{textAlign:"center"}}>What Genie Can Do?</h2>
     <Box
       component="main"
       sx={{
@@ -39,6 +42,7 @@ return(
         py: 8
       }}
     >
+
       <Container maxWidth={false}>
         <Grid
           container
